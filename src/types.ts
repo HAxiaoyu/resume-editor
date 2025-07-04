@@ -14,6 +14,7 @@ export interface Resume {
 }
 
 export interface TitleNameMap {
+    profile: string;
     educationList: string;
     workExpList: string;
     projectList: string;

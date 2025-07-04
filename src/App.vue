@@ -99,32 +99,34 @@ const handleFileImport = (event: Event) => {
       </div>
     </header>
 
-    <div class="flex-grow-1 d-flex overflow-hidden">
-      <div class="main-content-wrapper d-flex">
-        <!-- Left Column: JSON Editor -->
-        <div class="json-editor-panel d-flex flex-column overflow-auto">
-          <h5 class="mb-3">JSON 编辑器</h5>
-          <textarea class="form-control flex-grow-1 font-monospace" v-model="jsonInput" rows="10"
-            style="resize: none;"></textarea>
-          <div v-if="jsonError" class="alert alert-danger mt-2" role="alert">
-            JSON 格式错误: {{ jsonError }}
+    <div class="flex-grow-1 d-flex overflow-hidden justify-content-center">
+      <div class="main-content-wrapper">
+        <div class="content-columns-wrapper d-flex">
+          <!-- Left Column: JSON Editor -->
+          <div class="json-editor-panel d-flex flex-column overflow-auto">
+            <h5 class="mb-3">JSON 编辑器</h5>
+            <textarea class="form-control flex-grow-1 font-monospace" v-model="jsonInput" rows="10"
+              style="resize: none;"></textarea>
+            <div v-if="jsonError" class="alert alert-danger mt-2" role="alert">
+              JSON 格式错误: {{ jsonError }}
+            </div>
           </div>
-        </div>
 
-        <!-- Right Column: Live Preview -->
-        <div class="resume-preview-panel d-flex flex-column overflow-auto">
-          <h5 class="mb-3">简历预览</h5>
-          <div v-if="resumeData" class="resume-content-wrapper flex-grow-1">
-            <Profile :profile="resumeData.profile" :title="resumeData.titleNameMap.profile || '个人信息'" />
-            <Education :educationList="resumeData.educationList" :title="resumeData.titleNameMap.educationList" />
-            <Experience :workExpList="resumeData.workExpList" :title="resumeData.titleNameMap.workExpList" />
-            <Projects :projectList="resumeData.projectList" :title="resumeData.titleNameMap.projectList" />
-            <Awards :awardList="resumeData.awardList" :title="resumeData.titleNameMap.awardList" />
-            <AboutMe :aboutme="resumeData.aboutme" :title="resumeData.titleNameMap.aboutme" />
-          </div>
-          <div v-else
-            class="text-center p-5 bg-light rounded flex-grow-1 d-flex align-items-center justify-content-center">
-            <h2 class="text-muted">JSON 数据无效或为空</h2>
+          <!-- Right Column: Live Preview -->
+          <div class="resume-preview-panel d-flex flex-column overflow-auto">
+            <h5 class="mb-3">简历预览</h5>
+            <div v-if="resumeData" class="resume-content-wrapper flex-grow-1">
+              <Profile :profile="resumeData.profile" :title="resumeData.titleNameMap.profile || '个人信息'" />
+              <Education :educationList="resumeData.educationList" :title="resumeData.titleNameMap.educationList" />
+              <Experience :workExpList="resumeData.workExpList" :title="resumeData.titleNameMap.workExpList" />
+              <Projects :projectList="resumeData.projectList" :title="resumeData.titleNameMap.projectList" />
+              <Awards :awardList="resumeData.awardList" :title="resumeData.titleNameMap.awardList" />
+              <AboutMe :aboutme="resumeData.aboutme" :title="resumeData.titleNameMap.aboutme" />
+            </div>
+            <div v-else
+              class="text-center p-5 bg-light rounded flex-grow-1 d-flex align-items-center justify-content-center">
+              <h2 class="text-muted">JSON 数据无效或为空</h2>
+            </div>
           </div>
         </div>
       </div>
@@ -159,15 +161,24 @@ body {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
+/* This wrapper is added to center the two columns below the full-width header */
 .main-content-wrapper {
+  max-width: 90%;
+  /* Or a fixed value like 1600px */
   width: 100%;
-  /* Occupy 100% of the screen width */
+  /* Fallback or if max-width is not reached */
+  margin: 0 auto;
+  /* Centers the block */
   height: 100%;
-  /* Take full height of its flex parent */
-  text-align: left;
-  /* Ensure all text is left-aligned */
   display: flex;
-  /* Use flex to manage children widths */
+  /* To make content-columns-wrapper take full height */
+}
+
+.content-columns-wrapper {
+  width: 100%;
+  /* Takes full width of its parent .main-content-wrapper */
+  height: 100%;
+  display: flex;
 }
 
 .json-editor-panel {

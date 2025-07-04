@@ -15,9 +15,6 @@
         <p class="mb-0" style="font-size: 0.9rem;"><strong>GitHub:</strong> <a :href="profile.github" target="_blank">{{ profile.github }}</a></p>
       </div>
       <div class="col-md-6 mb-1">
-        <p class="mb-0" style="font-size: 0.9rem;"><strong>知乎:</strong> {{ profile.zhihu }}</p>
-      </div>
-      <div class="col-md-6 mb-1">
         <p class="mb-0" style="font-size: 0.9rem;"><strong>工作年限:</strong> {{ profile.workExpYear }}</p>
       </div>
     </div>

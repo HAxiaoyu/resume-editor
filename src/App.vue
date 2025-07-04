@@ -171,13 +171,21 @@ body {
 .resume-preview-panel {
   width: 60%; /* 60% of the main-content-wrapper */
   padding: 20px; /* Add some padding to the preview panel */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top, not center vertically */
+  overflow-y: auto; /* Allow scrolling if content exceeds A4 height */
+  height: 100%; /* Ensure it takes full height of its parent */
 }
 
 .resume-content-wrapper {
-  /* max-width: 800px; */ /* Removed for wider layout */
-  margin: 0; /* Removed for wider layout */
+  width: 794px; /* A4 width at 96 DPI */
+  height: 1123px; /* A4 height at 96 DPI, fixed height */
   padding: 20px; /* Add padding inside the resume content wrapper */
   background-color: #fff; /* White background for the resume */
   box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+  box-sizing: border-box; /* Include padding in width/height */
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Modern alternative for word-wrap */
 }
 </style>

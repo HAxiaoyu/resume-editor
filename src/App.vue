@@ -92,7 +92,8 @@ const handleFileImport = (event: Event) => {
       <div class="container-fluid">
         <a class="navbar-brand" href="#">简历编辑器</a>
         <div class="d-flex">
-          <input type="file" @change="handleFileImport" accept=".json" class="form-control form-control-sm me-2" style="width: auto;" />
+          <input type="file" @change="handleFileImport" accept=".json" class="form-control form-control-sm me-2"
+            style="width: auto;" />
           <button @click="exportToJson" class="btn btn-success btn-sm">保存为 JSON</button>
         </div>
       </div>
@@ -103,12 +104,8 @@ const handleFileImport = (event: Event) => {
         <!-- Left Column: JSON Editor -->
         <div class="json-editor-panel d-flex flex-column overflow-auto">
           <h5 class="mb-3">JSON 编辑器</h5>
-          <textarea
-            class="form-control flex-grow-1 font-monospace"
-            v-model="jsonInput"
-            rows="10"
-            style="resize: none;"
-          ></textarea>
+          <textarea class="form-control flex-grow-1 font-monospace" v-model="jsonInput" rows="10"
+            style="resize: none;"></textarea>
           <div v-if="jsonError" class="alert alert-danger mt-2" role="alert">
             JSON 格式错误: {{ jsonError }}
           </div>
@@ -125,7 +122,8 @@ const handleFileImport = (event: Event) => {
             <Awards :awardList="resumeData.awardList" :title="resumeData.titleNameMap.awardList" />
             <AboutMe :aboutme="resumeData.aboutme" :title="resumeData.titleNameMap.aboutme" />
           </div>
-          <div v-else class="text-center p-5 bg-light rounded flex-grow-1 d-flex align-items-center justify-content-center">
+          <div v-else
+            class="text-center p-5 bg-light rounded flex-grow-1 d-flex align-items-center justify-content-center">
             <h2 class="text-muted">JSON 数据无效或为空</h2>
           </div>
         </div>
@@ -137,55 +135,81 @@ const handleFileImport = (event: Event) => {
 <style>
 body {
   margin: 0;
-  overflow: hidden; /* Prevent main page scroll */
+  overflow: hidden;
+  /* Prevent main page scroll */
 }
+
 .vh-100 {
   height: 100vh;
 }
+
 .flex-grow-1 {
   flex-grow: 1;
 }
+
 .overflow-hidden {
   overflow: hidden;
 }
+
 .overflow-auto {
   overflow-y: auto;
 }
+
 .font-monospace {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
 .main-content-wrapper {
-  max-width: 100%; /* Occupy 90% of the screen width */
-  width: 100%; /* Ensure it takes the max-width */
-  margin: 0 auto; /* Center the wrapper */
-  height: 100%; /* Take full height of its flex parent */
-  text-align: left; /* Ensure all text is left-aligned */
+  width: 100%;
+  /* Occupy 100% of the screen width */
+  height: 100%;
+  /* Take full height of its flex parent */
+  text-align: left;
+  /* Ensure all text is left-aligned */
+  display: flex;
+  /* Use flex to manage children widths */
 }
 
 .json-editor-panel {
-  width: 40%; /* 40% of the main-content-wrapper */
-  padding: 20px; /* Add padding for alignment */
+  width: 50%;
+  /* Takes 50% of the main-content-wrapper */
+  padding: 20px;
+  /* Add padding for alignment */
+  overflow-y: auto;
+  /* Allow scrolling for editor content */
 }
 
 .resume-preview-panel {
-  width: 60%; /* 60% of the main-content-wrapper */
-  padding: 20px; /* Add some padding to the preview panel */
+  width: 50%;
+  /* Takes 50% of the main-content-wrapper */
+  padding: 20px;
+  /* Add some padding to the preview panel */
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align to top, not center vertically */
-  overflow-y: auto; /* Allow scrolling if content exceeds A4 height */
-  height: 100%; /* Ensure it takes full height of its parent */
+  /* Center the A4 page horizontally */
+  align-items: flex-start;
+  /* Align to top */
+  overflow-y: auto;
+  /* Allow scrolling for the panel if A4 overflows view */
+  height: 100%;
 }
 
 .resume-content-wrapper {
-  width: 794px; /* A4 width at 96 DPI */
-  height: 1123px; /* A4 height at 96 DPI, fixed height */
-  padding: 20px; /* Add padding inside the resume content wrapper */
-  background-color: #fff; /* White background for the resume */
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
-  box-sizing: border-box; /* Include padding in width/height */
-  word-wrap: break-word; /* Break long words */
-  overflow-wrap: break-word; /* Modern alternative for word-wrap */
+  width: 794px;
+  /* A4 width at 96 DPI (210mm) */
+  min-height: 1123px;
+  /* A4 height at 96 DPI (297mm), use min-height to allow content to expand */
+  padding: 20px;
+  /* Add padding inside the resume content wrapper */
+  background-color: #fff;
+  /* White background for the resume */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  box-sizing: border-box;
+  /* Include padding in width/height */
+  word-wrap: break-word;
+  /* Break long words */
+  overflow-wrap: break-word;
+  /* Modern alternative for word-wrap */
 }
 </style>

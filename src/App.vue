@@ -165,6 +165,7 @@ body {
 
 .json-editor-panel {
   width: 40%; /* 40% of the main-content-wrapper */
+  padding: 20px; /* Add padding for alignment */
 }
 
 .resume-preview-panel {
@@ -173,8 +174,8 @@ body {
 }
 
 .resume-content-wrapper {
-  max-width: 800px; /* Fixed width for the resume content */
-  margin: 0 auto; /* Center the resume content */
+  /* max-width: 800px; */ /* Removed for wider layout */
+  margin: 0; /* Removed for wider layout */
   padding: 20px; /* Add padding inside the resume content wrapper */
   background-color: #fff; /* White background for the resume */
   box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
